@@ -1,0 +1,30 @@
+# Binaries and build output
+/bin/
+/build/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go workspace and modules
+vendor/
+*.test
+*.out
+*.log
+
+# Environment and config files
+.env
+*.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# SQLite database files
+*.db
+*.sqlite
+
+# IDE / editor files
+.vscode/
+.idea/
