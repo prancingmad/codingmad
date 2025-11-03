@@ -34,13 +34,13 @@ The final product will run as a **local web app** — powered by Go on the backe
 
 ## Development Phases
 
-### **Phase 1 — Project Setup & Repository Initialization** - Started 10/28/2025
+### **Phase 1 — Project Setup & Repository Initialization** - Started 10/28/2025, Finished 10/28/2025
 - Initialize GitHub repository and local Git environment  
 - Create `main` and working branches  
 - Define project structure and documentation  
 - Configure `.gitignore`, `README.md`, and environment setup  
 
-### **Phase 2 — Core Go Backend** - Pending
+### **Phase 2 — Core Go Backend** - Started 10/28/2025
 - Build Go API skeleton  
 - Implement configuration loading and logging  
 - Connect to SQLite  

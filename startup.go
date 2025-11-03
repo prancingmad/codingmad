@@ -2,42 +2,30 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
 	"os"
 	"os/exec"
 	"runtime"
 
+	"codingmad/cmd/server"
 	"codingmad/internal/config"
-	"codingmad/internal/db"
 )
 
 func main() {
 	// Load configuration
 	cfg := config.Load()
 
-	// Connect SQLite database
-	db.Connect(cfg.DBPath)
-	// defer db.Close() <- handled by server process; do not close here
+	// Optional: do other startup tasks here
+	// e.g., start Docker, RabbitMQ, etc. in the future
 
-	// Open browser after DB is ready
+	// Open browser after everything is ready
 	url := "http://localhost:" + cfg.Port + "/health"
 	openBrowser(url)
 
-	// Setup HTTP server
-	mux := http.NewServeMux()
-	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprint(w, `{"status":"ok"}`)
-	})
-
-	fmt.Printf("🚀 Server running on %s\n", url)
-	if err := http.ListenAndServe(":"+cfg.Port, mux); err != nil {
-		log.Fatalf("Server failed to start: %v", err)
-	}
+	// Start the full server (blocks forever)
+	server.Start(cfg)
 }
 
-// openBrowser opens the URL in the default Windows browser (WSL compatible)
+// openBrowser opens the URL in the default browser
 func openBrowser(url string) {
 	var err error
 	switch runtime.GOOS {
